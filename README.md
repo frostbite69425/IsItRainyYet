@@ -1,4 +1,4 @@
-# Weather App
+# Is It Rainy Yet - A Weather App
 
 A weather application built as part of [The Odin Project](https://www.theodinproject.com/) curriculum.
 

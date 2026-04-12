@@ -1,5 +1,6 @@
 import makeInitModal from "../../components/initModal.component.js";
 import initModalController from "../../controllers/uiControllers/initModalController.controller.js";
+import mainPage from "./mainPage.service.js";
 
 const initPage = () => {
   const content = document.querySelector("div.content");
@@ -8,7 +9,8 @@ const initPage = () => {
   content.appendChild(initModal.domElement);
 
   initModal.domElement.showModal();
-  const weatherData = initModalController();
+
+  initModalController();
 };
 
 export default initPage;

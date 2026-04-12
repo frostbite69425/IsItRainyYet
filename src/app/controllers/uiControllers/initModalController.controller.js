@@ -1,5 +1,6 @@
 import getGeolocationWeatherData from "../appControllers/getGeolocationWeatherData.controller.js";
 import getSearchedWeatherData from "../appControllers/getSearchedWeatherData.controller.js";
+import mainPage from "../../services/ui services/mainPage.service.js";
 
 const initModalController = () => {
   const geolocationBtn = document.querySelector("button.geolocation-btn");
@@ -9,20 +10,22 @@ const initModalController = () => {
 
   geolocationBtn.addEventListener("click", async (e) => {
     e.preventDefault();
-    const weatherData = await getGeolocationWeatherData();
     initModal.close();
+    const weatherData = await getGeolocationWeatherData();
     console.log(weatherData);
-    return weatherData;
+    mainPage(weatherData);
   });
 
   searchBtn.addEventListener("click", async (e) => {
     e.preventDefault();
     const placeName = searchInput.value;
-    const weatherData = await getSearchedWeatherData(placeName);
     initModal.close();
+    const weatherData = await getSearchedWeatherData(placeName);
     console.log(weatherData);
-    return weatherData;
+    mainPage(weatherData);
   });
+
+  console.log(1);
 };
 
 export default initModalController;

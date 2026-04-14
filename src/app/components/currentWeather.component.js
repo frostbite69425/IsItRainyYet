@@ -13,10 +13,12 @@ const currentWeatherCard = (weatherData) => {
   const weatherIconValue = weatherData.icon;
 
   import(`../../assets/weatherIcons/${weatherIconValue}.svg`)
-    .then(() => {
-      icon.domElement.src = `../../assets/weatherIcons/${weatherIconValue}.svg`;
+    .then((image) => {
+      icon.domElement.src = image.default;
     })
-    .catch((err) => console.error(err));
+    .catch((err) => {
+      console.error(`Could not load image due to ${err}`);
+    });
 
   imgDiv.setChildren(icon.domElement);
 

@@ -24,8 +24,6 @@ const initModalController = () => {
     console.log(weatherData);
     mainPage(weatherData);
   });
-
-  console.log(1);
 };
 
 export default initModalController;

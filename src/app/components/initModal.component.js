@@ -31,8 +31,7 @@ function makeInitModal() {
   searchBtn.domElement.setAttribute("type", "submit");
   searchBtn.insertText("search");
 
-  searchLabel.setChildren(searchInput.domElement);
-  searchLabel.setChildren(searchBtn.domElement);
+  searchLabel.setChildren(searchInput.domElement, searchBtn.domElement);
 
   form.setChildren(
     heading.domElement,

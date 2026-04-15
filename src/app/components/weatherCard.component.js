@@ -1,4 +1,5 @@
 import elementFactory from "../controllers/uiControllers/elementFactory.controller.js";
+import { toDate, format } from "date-fns";
 
 const weatherCard = (weatherData) => {
   const cardDiv = elementFactory("div", "weather-card-container card");
@@ -16,6 +17,17 @@ const weatherCard = (weatherData) => {
     .catch((error) => console.error(`Could not load image due to ${error}`));
 
   imgDiv.setChildren(icon.domElement);
+
+  const dateDiv = elementFactory("div", "weatherDate card-data");
+
+  const dayDiv = elementFactory("div", "weatherDay card-data");
+
+  const date = format(toDate(weatherData.datetime), "dd/MMM/yyyy");
+
+  const day = format(date, "EEEE");
+
+  dateDiv.insertText(date);
+  dayDiv.insertText(day);
 
   const conditions = elementFactory("div", "weatherConditions card-data");
 
@@ -42,6 +54,8 @@ const weatherCard = (weatherData) => {
 
   cardDiv.setChildren(
     imgDiv.domElement,
+    dateDiv.domElement,
+    dayDiv.domElement,
     conditions.domElement,
     temp.domElement,
     feelsLike.domElement,

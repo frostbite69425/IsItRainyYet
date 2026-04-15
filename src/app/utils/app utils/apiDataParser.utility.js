@@ -1,7 +1,7 @@
 function apiDataParser(jsonFile) {
   return {
     currentConditions: jsonFile.currentConditions,
-    days: jsonFile.days.slice(0, 7),
+    days: jsonFile.days.slice(1, 8),
   };
 }
 

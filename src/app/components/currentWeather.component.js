@@ -1,4 +1,5 @@
 import elementFactory from "../controllers/uiControllers/elementFactory.controller.js";
+import { startOfToday, format } from "date-fns";
 
 const currentWeatherCard = (weatherData) => {
   const cardDiv = elementFactory("div", "current-weather-card card");
@@ -21,6 +22,17 @@ const currentWeatherCard = (weatherData) => {
     });
 
   imgDiv.setChildren(icon.domElement);
+
+  const dateDiv = elementFactory("div", "weatherDate card-data");
+
+  const dayDiv = elementFactory("div", "weatherDay card-data");
+
+  const todayDate = format(startOfToday(), "dd/MMM/yyyy");
+
+  const todayDay = format(startOfToday(), "EEEE");
+
+  dateDiv.insertText(todayDate);
+  dayDiv.insertText(todayDay);
 
   const conditions = elementFactory("div", "weatherConditions card-data");
 
@@ -47,6 +59,8 @@ const currentWeatherCard = (weatherData) => {
 
   cardDiv.setChildren(
     imgDiv.domElement,
+    dateDiv.domElement,
+    dayDiv.domElement,
     conditions.domElement,
     temp.domElement,
     feelsLike.domElement,

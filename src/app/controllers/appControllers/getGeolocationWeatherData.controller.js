@@ -9,7 +9,8 @@ async function getGeolocationWeatherData() {
       `${coord.latitude}, ${coord.longitude}`,
     );
     const parsedWeatherData = apiDataParser(weatherData);
-    return parsedWeatherData;
+    const location = `${coord.latitude}, ${coord.longitude}`;
+    return { parsedWeatherData, location };
   } catch (error) {
     console.error(error);
   }

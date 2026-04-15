@@ -9,7 +9,7 @@ function searchNewLocation() {
     e.preventDefault();
     const locationValue = searchInput.value;
     const weatherData = await getSearchedWeatherData(locationValue);
-    mainPage(weatherData);
+    mainPage(weatherData, locationValue);
   });
 }
 

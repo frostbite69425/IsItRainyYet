@@ -13,7 +13,7 @@ const initModalController = () => {
     initModal.close();
     const weatherData = await getGeolocationWeatherData();
     console.log(weatherData);
-    mainPage(weatherData);
+    mainPage(weatherData.parsedWeatherData, weatherData.location);
   });
 
   searchBtn.addEventListener("click", async (e) => {
@@ -22,7 +22,7 @@ const initModalController = () => {
     initModal.close();
     const weatherData = await getSearchedWeatherData(placeName);
     console.log(weatherData);
-    mainPage(weatherData);
+    mainPage(weatherData, placeName);
   });
 };
 

@@ -1,5 +1,6 @@
 import getSearchedWeatherData from "../appControllers/getSearchedWeatherData.controller.js";
-import mainPage from "../../services/ui services/mainPage.service.js";
+import setLocationName from "../../utils/ui utils/setLocationName.js";
+import weatherDisplay from "../../services/ui services/weatherDisplay.service.js";
 
 function searchNewLocation() {
   const searchBtn = document.querySelector("button.app-search-btn");
@@ -9,7 +10,9 @@ function searchNewLocation() {
     e.preventDefault();
     const locationValue = searchInput.value;
     const weatherData = await getSearchedWeatherData(locationValue);
-    mainPage(weatherData, locationValue);
+    console.log({ locationValue, weatherData });
+    weatherDisplay(weatherData);
+    setLocationName(locationValue);
   });
 }
 

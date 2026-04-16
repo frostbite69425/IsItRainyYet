@@ -1,46 +1,36 @@
 import elementFactory from "../../controllers/uiControllers/elementFactory.controller.js";
-import weatherCard from "../../components/weatherCard.component.js";
-import currentWeatherCard from "../../components/currentWeather.component.js";
 import searchLocation from "../../components/userSearchInput.component.js";
 import searchNewLocation from "../../controllers/uiControllers/searchNewLocation.controller.js";
 import unitSwitcher from "../../components/unitSwitcher.component.js";
 import unitSwitcherController from "../../controllers/uiControllers/unitSwitcher.controller.js";
+import weatherDisplay from "./weatherDisplay.service.js";
 
 const mainPage = (weatherData, location) => {
-  const currentConditions = weatherData.currentConditions; // object
-  const weatherWeek = weatherData.days; // array
-
   const content = document.querySelector("div.content");
 
-  while (content.firstChild) {
-    content.removeChild(content.lastChild);
+  if (!document.querySelector("input.location-search-input")) {
+    const weatherDisplayHolder = elementFactory("div", "weather-display-div");
+
+    const searchBar = searchLocation();
+
+    const unitSwitcherDiv = unitSwitcher(location);
+
+    content.append(
+      searchBar.domElement,
+      unitSwitcherDiv.domElement,
+      weatherDisplayHolder.domElement,
+    );
+    searchNewLocation();
+  } else {
+    const address = document.querySelector("div.place-name-div");
+    address.textContent = location;
   }
 
-  const searchBar = searchLocation();
-
-  const unitSwitcherDiv = unitSwitcher(location);
-
-  const currentWeatherConditions = currentWeatherCard(currentConditions);
-
-  const weatherCardHolder = elementFactory(
-    "div",
-    "weather-card-holder container",
-  );
-
-  for (const day of weatherWeek) {
-    const weatherCardComponent = weatherCard(day);
-    weatherCardHolder.setChildren(weatherCardComponent.domElement);
-  }
-
-  content.append(
-    searchBar.domElement,
-    unitSwitcherDiv.domElement,
-    currentWeatherConditions.domElement,
-    weatherCardHolder.domElement,
-  );
-
-  searchNewLocation();
-  unitSwitcherController(location);
+  weatherDisplay(weatherData);
+  const select = document.querySelector("select.unit-select");
+  select.dataset.locationValue = location;
+  console.log(location);
+  unitSwitcherController();
 };
 
 export default mainPage;

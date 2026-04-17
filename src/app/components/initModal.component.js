@@ -6,9 +6,7 @@ function makeInitModal() {
   form.domElement.setAttribute("id", "geolocation-method-form");
 
   const heading = elementFactory("h2", "heading");
-  heading.insertText(
-    "Use automatic geolocation services or search for a place yourself!",
-  );
+  heading.insertText("Use geolocation or search for a place yourself!");
 
   const geolocationBtn = elementFactory("button", "geolocation-btn button");
   geolocationBtn.domElement.setAttribute("type", "button");
@@ -18,8 +16,10 @@ function makeInitModal() {
   smallHeading.insertText("OR");
 
   const searchLabel = elementFactory("label", "search-label label");
-  searchLabel.insertText("Search for a specific place:");
   searchLabel.domElement.setAttribute("for", "search-input");
+
+  const searchPara = elementFactory("p", "search-para");
+  searchPara.insertText("Search for a specific place:");
 
   const searchInput = elementFactory("input", "search-input");
   searchInput.domElement.setAttribute("type", "search");
@@ -31,7 +31,11 @@ function makeInitModal() {
   searchBtn.domElement.setAttribute("type", "submit");
   searchBtn.insertText("search");
 
-  searchLabel.setChildren(searchInput.domElement, searchBtn.domElement);
+  searchLabel.setChildren(
+    searchPara.domElement,
+    searchInput.domElement,
+    searchBtn.domElement,
+  );
 
   form.setChildren(
     heading.domElement,

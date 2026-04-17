@@ -5,6 +5,8 @@ import unitSwitcher from "../../components/unitSwitcher.component.js";
 import unitSwitcherController from "../../controllers/uiControllers/unitSwitcher.controller.js";
 import weatherDisplay from "./weatherDisplay.service.js";
 
+import loaderComponent from "../../components/loader.component.js";
+
 const mainPage = (weatherData, location) => {
   const content = document.querySelector("div.content");
 
@@ -15,8 +17,11 @@ const mainPage = (weatherData, location) => {
 
     const unitSwitcherDiv = unitSwitcher(location);
 
+    const loader = loaderComponent();
+
     content.append(
       searchBar.domElement,
+      loader.domElement,
       unitSwitcherDiv.domElement,
       weatherDisplayHolder.domElement,
     );
@@ -25,12 +30,15 @@ const mainPage = (weatherData, location) => {
     const address = document.querySelector("div.place-name-div");
     address.textContent = location;
   }
-
-  weatherDisplay(weatherData);
   const select = document.querySelector("select.unit-select");
   select.dataset.locationValue = location;
-  console.log(location);
   unitSwitcherController();
+
+  if (weatherData >= 400) {
+    return;
+  }
+
+  weatherDisplay(weatherData);
 };
 
 export default mainPage;

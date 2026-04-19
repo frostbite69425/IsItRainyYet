@@ -128,6 +128,8 @@ body {
   color: var(--text);
   font-family: "Google flex";
   padding: 1rem 2rem;
+  display: grid;
+  gap: 2rem;
 }
 
 .init-modal {
@@ -148,6 +150,7 @@ body {
     gap: 1.5rem;
     justify-content: center;
     align-items: center;
+    text-align: center;
 
     > h2 {
       overflow-wrap: break-word;
@@ -155,6 +158,11 @@ body {
       font-family: "fancy cursive";
       color: var(--text);
     }
+  }
+
+  button,
+  input {
+    width: clamp(15rem, 30dvw, 30rem);
   }
 
   button {
@@ -182,16 +190,57 @@ body {
   }
 }
 
-/* loader styles */
-
-/* From Uiverse.io by mobinkakei */
-
 .loader {
   display: none;
   margin: auto;
   position: absolute;
-  top: 50dvw;
+  top: 50dvh;
 }
+
+.hero {
+  > h1 {
+    font-family: "fancy cursive";
+    font-size: clamp(3rem, 5dvw, 5rem);
+    width: fit-content;
+    margin: auto;
+  }
+}
+
+.content {
+  display: grid;
+  gap: 1rem;
+  font-size: clamp(1.5rem, 4dvw, 1.7rem);
+  color: var(--text-muted);
+  justify-items: center;
+
+  .search-div {
+    label {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      justify-self: center;
+      max-width: 50%;
+      gap: 1rem;
+
+      button {
+        max-width: 10rem;
+        border-radius: 15px;
+        border: none;
+        border-top: 1px solid var(--highlight);
+        background-color: var(--bg);
+        color: var(--text);
+        box-shadow: 2px 3px 5px var(--bg-light);
+      }
+
+      p {
+        grid-column: 1/-1;
+      }
+    }
+  }
+}
+
+/* loader styles */
+
+/* From Uiverse.io by mobinkakei */
 
 .wrapper {
   width: 200px;

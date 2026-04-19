@@ -21,9 +21,9 @@ const mainPage = (weatherData, location) => {
 
     content.append(
       searchBar.domElement,
-      loader.domElement,
       unitSwitcherDiv.domElement,
       weatherDisplayHolder.domElement,
+      loader.domElement,
     );
     searchNewLocation();
   } else {

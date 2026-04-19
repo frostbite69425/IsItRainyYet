@@ -12,12 +12,16 @@ function searchNewLocation() {
     const locationValue = searchInput.value;
     const loader = document.querySelector("div.loader");
     loader.style.display = "block";
+    const weatherDisplayDiv = document.querySelector("div.weather-display-div");
+    weatherDisplayDiv.style.display = "none";
     const weatherData = await getSearchedWeatherData(locationValue);
     if (weatherData >= 400) {
       loader.style.display = "none";
       logAlertService("Invalid search parameters.");
       return;
     }
+    weatherDisplayDiv.style.display = "none";
+    weatherDisplayDiv.style.display = "block";
     loader.style.display = "none";
     console.log({ locationValue, weatherData });
     weatherDisplay(weatherData);

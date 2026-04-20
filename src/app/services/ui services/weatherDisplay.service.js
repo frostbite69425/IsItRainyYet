@@ -19,6 +19,9 @@ const weatherDisplay = (weatherData) => {
     "weather-card-holder container",
   );
 
+  const weatherWeekText = elementFactory("div", "weather-week-text");
+  weatherWeekText.insertText("Forecast for the upcoming week:");
+
   for (const day of weatherWeek) {
     const weatherCardComponent = weatherCard(day);
     weatherCardHolder.setChildren(weatherCardComponent.domElement);
@@ -26,6 +29,7 @@ const weatherDisplay = (weatherData) => {
 
   displayDiv.append(
     currentWeatherConditions.domElement,
+    weatherWeekText.domElement,
     weatherCardHolder.domElement,
   );
 };

@@ -10,10 +10,13 @@ const unitSwitcherController = async () => {
     const selectedValue = select.value;
     const loader = document.querySelector("div.loader");
     loader.style.display = "block";
+    const weatherDisplayDiv = document.querySelector("div.weather-display-div");
+    weatherDisplayDiv.style.display = "none";
     const weatherData = await getSearchedWeatherData(
       locationValue,
       selectedValue,
     );
+    weatherDisplayDiv.style.display = "grid";
     loader.style.display = "none";
     const address = document.querySelector("div.place-name-div");
     address.textContent = locationValue;

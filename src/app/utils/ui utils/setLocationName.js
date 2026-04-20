@@ -4,7 +4,7 @@ const setLocationName = (locationValue) => {
   const metricOption = document.querySelector("option.metric");
   metricOption.selected = true;
   const address = document.querySelector("div.place-name-div");
-  address.textContent = locationValue;
+  address.textContent = `Address: ${locationValue}`;
 };
 
 export default setLocationName;

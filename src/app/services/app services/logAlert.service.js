@@ -14,5 +14,5 @@ export default (message, alertType = "warning") => {
     if (content.contains(alert.domElement)) {
       content.removeChild(alert.domElement);
     }
-  }, 3000);
+  }, 5000);
 };

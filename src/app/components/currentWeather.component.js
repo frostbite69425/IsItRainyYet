@@ -4,6 +4,9 @@ import { startOfToday, format } from "date-fns";
 const currentWeatherCard = (weatherData) => {
   const cardDiv = elementFactory("div", "current-weather-card card");
 
+  const textDiv = elementFactory("div", "current-weather-text card-data");
+  textDiv.insertText("Today's weather");
+
   const imgDiv = elementFactory(
     "div",
     "current-weather-img-container card-data",
@@ -58,6 +61,7 @@ const currentWeatherCard = (weatherData) => {
   windSpeed.insertText(`Wind Speed: ${weatherData.windspeed}`);
 
   cardDiv.setChildren(
+    textDiv.domElement,
     imgDiv.domElement,
     dateDiv.domElement,
     dayDiv.domElement,

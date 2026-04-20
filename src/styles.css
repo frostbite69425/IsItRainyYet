@@ -93,12 +93,16 @@ h6 {
   --highlight: oklch(0.5 0.01 169);
   --border: oklch(0.4 0.01 169);
   --border-muted: oklch(0.3 0.01 169);
-  --primary: oklch(0.76 0.1 169);
+  --primary: oklch(50.759% 0.24841 278.687);
+  --primary-shadow: oklch(41.747% 0.05951 288.627);
+  --blue-shadow: oklch(70.256% 0.13845 263.153);
+  --green-shadow: oklch(73.224% 0.21138 137.691);
   --secondary: oklch(0.76 0.1 349);
   --danger: oklch(0.7 0.05 30);
-  --warning: oklch(0.7 0.05 100);
+  --warning: oklch(62.832% 0.25728 29.173);
   --success: oklch(0.7 0.05 160);
   --info: oklch(0.7 0.05 260);
+  --font-size-var: clamp(1.5rem, 4dvw, 1.7rem);
 
   font-family:
     Arial,
@@ -198,6 +202,11 @@ body {
 }
 
 .hero {
+  background-color: var(--bg);
+  border-radius: 15px;
+  box-shadow: 2px 2px 2px var(--bg-light);
+  padding: 0.5rem 1rem;
+
   > h1 {
     font-family: "fancy cursive";
     font-size: clamp(3rem, 5dvw, 5rem);
@@ -208,7 +217,7 @@ body {
 
 .content {
   display: grid;
-  gap: 1rem;
+  gap: 2rem;
   font-size: clamp(1.5rem, 4dvw, 1.7rem);
   color: var(--text-muted);
   justify-items: center;
@@ -216,25 +225,123 @@ body {
   .search-div {
     label {
       display: grid;
-      grid-template-columns: 1fr 1fr;
       justify-self: center;
-      max-width: 50%;
       gap: 1rem;
+      padding: 1rem;
+      .search-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      input {
+        border: none;
+        border-radius: 15px;
+      }
 
       button {
         max-width: 10rem;
         border-radius: 15px;
         border: none;
         border-top: 1px solid var(--highlight);
-        background-color: var(--bg);
+        background-color: var(--primary);
         color: var(--text);
-        box-shadow: 2px 3px 5px var(--bg-light);
+        box-shadow: 2px 3px 5px var(--primary-shadow);
+        transition: transform 0.2s ease-in-out;
+        cursor: pointer;
+      }
+
+      button:hover {
+        transform: scale(1.05);
       }
 
       p {
         grid-column: 1/-1;
       }
     }
+  }
+
+  .unit-main-div {
+    display: grid;
+    background-color: var(--bg);
+    width: min(100%, 53rem);
+    padding: 1rem;
+    gap: 1rem;
+    border-radius: 15px;
+
+    .place-name-div {
+      text-transform: capitalize;
+      color: var(--text);
+    }
+
+    select {
+      border-radius: 15px;
+    }
+  }
+
+  .weather-display-div {
+    display: grid;
+    gap: 2rem;
+    width: 100%;
+  }
+}
+
+.card {
+  background-color: var(--bg);
+  padding: 1rem 2.5rem;
+  border-radius: 15px;
+  box-shadow: 2px 2px 4px var(--green-shadow);
+  border-top: 1px solid var(--highlight);
+  display: grid;
+  gap: 0.5rem;
+}
+
+.current-weather-card {
+  box-shadow: 2px 2px 4px var(--blue-shadow);
+  width: min(35rem, 100%);
+  justify-self: center;
+
+  .current-weather-text {
+    text-align: center;
+    font-weight: 600;
+    font-size: calc(var(--font-size-var) * 1.6);
+    font-family: "fancy cursive";
+    color: var(--text);
+  }
+}
+
+img {
+  transform: scale(2);
+  padding: 2rem 1rem;
+}
+
+.weather-card-holder {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.weather-week-text {
+  font-size: calc(var(--font-size-var) * 1.5);
+  font-family: "fancy cursive";
+  color: var(--text);
+}
+
+.alert-div {
+  background-color: var(--warning);
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-radius: 15px;
+  color: var(--text);
+
+  button {
+    border: none;
+    border-radius: 50%;
+    padding: 1rem;
+    background-color: var(--bg-dark);
   }
 }
 

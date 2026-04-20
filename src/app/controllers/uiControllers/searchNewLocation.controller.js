@@ -19,9 +19,14 @@ function searchNewLocation() {
       loader.style.display = "none";
       logAlertService("Invalid search parameters.");
       return;
+    } else if (weatherData == undefined) {
+      loader.style.display = "none";
+      logAlertService(
+        "Could not connect to the servers. Please check your network and try again.",
+      );
+      return;
     }
-    weatherDisplayDiv.style.display = "none";
-    weatherDisplayDiv.style.display = "block";
+    weatherDisplayDiv.style.display = "grid";
     loader.style.display = "none";
     console.log({ locationValue, weatherData });
     weatherDisplay(weatherData);

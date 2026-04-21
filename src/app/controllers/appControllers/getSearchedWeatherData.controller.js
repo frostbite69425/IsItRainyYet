@@ -5,7 +5,7 @@ import logAlert from "../../services/app services/logAlert.service.js";
 async function getSearchedWeatherData(location, unit = "metric") {
   try {
     const weatherData = await getWeatherData(location, unit);
-    if (weatherData >= 400) {
+    if (weatherData >= 400 || weatherData == undefined) {
       return weatherData;
     }
     const parsedWeatherData = apiDataParser(weatherData);

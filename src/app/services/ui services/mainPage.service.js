@@ -4,7 +4,7 @@ import searchNewLocation from "../../controllers/uiControllers/searchNewLocation
 import unitSwitcher from "../../components/unitSwitcher.component.js";
 import unitSwitcherController from "../../controllers/uiControllers/unitSwitcher.controller.js";
 import weatherDisplay from "./weatherDisplay.service.js";
-
+import gitRedirectController from "../../controllers/uiControllers/gitRedirect.controller.js";
 import loaderComponent from "../../components/loader.component.js";
 
 const mainPage = (weatherData, location) => {
@@ -26,6 +26,7 @@ const mainPage = (weatherData, location) => {
       loader.domElement,
     );
     searchNewLocation();
+    gitRedirectController();
   } else {
     const address = document.querySelector("div.place-name-div");
     address.textContent = location;
@@ -34,7 +35,7 @@ const mainPage = (weatherData, location) => {
   select.dataset.locationValue = location;
   unitSwitcherController();
 
-  if (weatherData >= 400) {
+  if (weatherData >= 400 || weatherData == undefined) {
     return;
   }
 

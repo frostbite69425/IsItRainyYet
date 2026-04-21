@@ -15,15 +15,14 @@ function searchNewLocation() {
     const weatherDisplayDiv = document.querySelector("div.weather-display-div");
     weatherDisplayDiv.style.display = "none";
     const weatherData = await getSearchedWeatherData(locationValue);
-    if (weatherData >= 400) {
+
+    if (weatherData == undefined) {
+      loader.style.display = "none";
+      logAlertService("Could not connect to the servers.");
+      return;
+    } else if (weatherData >= 400) {
       loader.style.display = "none";
       logAlertService("Invalid search parameters.");
-      return;
-    } else if (weatherData == undefined) {
-      loader.style.display = "none";
-      logAlertService(
-        "Could not connect to the servers. Please check your network and try again.",
-      );
       return;
     }
     weatherDisplayDiv.style.display = "grid";

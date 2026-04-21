@@ -309,6 +309,9 @@ body {
     color: var(--text);
   }
 }
+.weatherDate {
+  color: var(--text);
+}
 
 img {
   transform: scale(2);
@@ -329,19 +332,65 @@ img {
 
 .alert-div {
   background-color: var(--warning);
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
   align-items: center;
   padding: 1rem 2rem;
   border-radius: 15px;
   color: var(--text);
+  display: grid;
+  grid-template-columns: 50px 1fr 50px;
+  justify-items: center;
+  align-items: center;
+  gap: 1rem;
 
   button {
     border: none;
-    border-radius: 50%;
+    border-radius: 100px;
     padding: 1rem;
     background-color: var(--bg-dark);
+  }
+}
+
+footer {
+  padding: 2rem;
+  background-color: var(--bg);
+  color: var(--text);
+  border-radius: 15px;
+  position: relative;
+  display: grid;
+  place-items: center;
+
+  button.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 15px;
+    gap: 15px;
+    background: var(--bg-light);
+    border-radius: 5px;
+    border: none;
+    border-top: 1px solid var(--highlight);
+    cursor: pointer;
+    transition: 200ms;
+  }
+
+  button.button .text {
+    color: var(--text);
+    font-weight: 700;
+    font-size: 1em;
+    transition: 200ms;
+  }
+
+  button.button svg path {
+    transition: transform 200ms ease-in-out;
+  }
+
+  button.button:hover {
+    transform: scale(1.1);
+    background-color: var(--bg-light);
+  }
+
+  button.button svg path {
+    fill: var(--text);
   }
 }
 

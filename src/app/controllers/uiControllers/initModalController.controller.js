@@ -15,6 +15,13 @@ const initModalController = () => {
     const loader = document.querySelector("div.loader");
     loader.style.display = "block";
     const weatherData = await getGeolocationWeatherData();
+    if (weatherData >= 400 || weatherData == undefined) {
+      loader.style.display = "none";
+      logAlertService("Could not connect to the server.");
+      let placeName = "Unresolved";
+      mainPage(weatherData, placeName);
+      return;
+    }
     loader.style.display = "none";
     console.log(weatherData);
     mainPage(weatherData.parsedWeatherData, weatherData.location);
@@ -27,7 +34,12 @@ const initModalController = () => {
     const loader = document.querySelector("div.loader");
     loader.style.display = "block";
     const weatherData = await getSearchedWeatherData(placeName);
-    if (weatherData >= 400) {
+    if (weatherData == undefined) {
+      loader.style.display = "none";
+      logAlertService("Could not connect to the server.");
+      mainPage(weatherData, placeName);
+      return;
+    } else if (weatherData >= 400) {
       loader.style.display = "none";
       logAlertService("Invalid search parameters.");
       mainPage(weatherData, placeName);
